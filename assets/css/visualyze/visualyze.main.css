@@ -513,8 +513,8 @@ a.read-more, a.read-more:visited {
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 }
 
-.page-navigation .devly-first-link a,
-.page-navigation .devly-last-link a {
+.page-navigation .viz-first-link a,
+.page-navigation .viz-last-link a {
 	line-height: 27px;
 }
 

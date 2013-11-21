@@ -378,10 +378,10 @@ function vizPaginate($before = '', $after = '') {
 	$postsPerPage 	= intval(get_query_var('posts_per_page'));
 	$paged 			= intval(get_query_var('paged'));
 
-	// DONT EXECUTE IF POSTS FOUND IS LESS THAN POSTS PER PAGE
+	// Don't execute if posts found is less than posts per page
 	if ($foundPosts <= $postsPerPage) { return; }
 
-	// SET PAGINATION FUNCTIONALITY TO TRUE
+	// Set pagination functionality to 'true'
 	if(empty($paged) || $paged == 0) { $paged = 1; }
 
 	$pageLinksLimit = 7;
@@ -391,57 +391,72 @@ function vizPaginate($before = '', $after = '') {
 	$halfPageStart 	= floor($newLinksLimit / 2);
 	$halfPageEnd 	= ceil($newLinksLimit / 2);
 
-	// SETUP START PAGE
+	// Setup the start page
 	if($startPage <= 0) { $startPage = 1; }
 
-	// SETUP END PAGE
-	if(($endPage - $startPage) != $newLinksLimit) { $endPage = $startPage + $newLinksLimit; }
+	// Setup the end page
+	if(($endPage - $startPage) != $newLinksLimit) { 
+	
+	    $endPage = $startPage + $newLinksLimit; 
+	    
+    }
 
-	// CALCULATE NEW END PAGE
+	// Calculate the new end page
 	if($endPage > $maxPages) {
+	
 		$startPage 	= $maxPages - $newLinksLimit;
 		$endPage 	= $maxPages;
+	
 	}
 
-	// SETUP STARTING POINT
+	// Setup the start point
 	if($startPage <= 0) { $startPage = 1; }
 
-	echo $before . '<nav class="page-navigation"><ol class="devlyPageNav clearfix">' . "";
+	echo $before . '<nav class="page-navigation"><ol class="viz-pagenav clearfix">' . "";
 
-	// SETUP BACK TO FIRST PAGE LINK
+	// Create back to first page link
 	if ($startPage >= 2 && $pageLinksLimit < $maxPages) {
 
 		$firstPageText = "First";
-		echo '<li class="devly-first-link"><a href="' . get_pagenum_link() . '" title="' . $firstPageText . '">' . $firstPageText . '</a></li>';
+		
+		echo '<li class="viz-first-link"><a href="' . get_pagenum_link() . '" title="' . $firstPageText . '">' . $firstPageText . '</a></li>';
 
 	}
 
-	// SETUP PREVIOUS PAGE LINK
-	echo '<li class="next-page">'; 
+	// Create previous page link
+	echo '<li class="prev-page">'; 
 	    
 	    previous_posts_link('&laquo;');
 	
 	echo '</li>';
 
-	// SETUP NUMBERED LINKS
+	// Setup numbered links
 	for($i = $startPage; $i <= $endPage; $i++) {
 
-		if($i == $paged) { echo '<li class="current-page">' . $i . '</li>'; } else { echo '<li><a href="' . get_pagenum_link($i) . '">' . $i . '</a></li>'; }
+		if($i == $paged) { 
+		
+		    echo '<li class="current-page">' . $i . '</li>'; 
+		    
+		  } else { 
+		  
+		    echo '<li><a href="' . get_pagenum_link($i) . '">' . $i . '</a></li>'; 
+		    
+		  }
 
 	}
 
-	// SETUP NEXT PAGE LINK
+	// Create the next page link
 	echo '<li class="next-page">'; 
 	    
 	    next_posts_link('&raquo;');
 	
 	echo '</li>';
 
-	// SETUP GO TO LAST PAGE LINK
+	// Create go to last page link
 	if ($endPage < $maxPages) {
 
 		$lastPageText = "Last";
-		echo '<li class="devly-last-link"><a href="' . get_pagenum_link($maxPages) . '" title="' . $lastPageText . '">' . $lastPageText . '</a></li>';
+		echo '<li class="viz-last-link"><a href="' . get_pagenum_link($maxPages) . '" title="' . $lastPageText . '">' . $lastPageText . '</a></li>';
 
 	}
 

@@ -8,10 +8,12 @@
 
 /*
 
-	This function creates the text that appears
-	in the <title> of your page. If you're on the
-	homepage, the blog name is displayed, otherwise
-	the default wp title output is displayed.
+	This function creates the text that appears in the 
+	<title> of your page. If you're on the homepage, the 
+	blog name is displayed, otherwise the default wp 
+	title output is displayed.
+	
+	@echo string    html page title
 	
 */
 
@@ -37,20 +39,14 @@ function vizPageTitle() {
 
 /*
 
-	This function is pretty stright forward.
-	It accepts one parameter ($limit), which is
-	the character count you'd like to display
-	before you start truncating your title.
-	
-	Unlike truncating an excerpt, we are
-	using mb_strlen() so that titles aren't
-	cut off in the middle of words. This
-	will find the nearest space and 
-	then truncates.
-	
-	Usage: echo vizTruncateTitle(25);
-	
-	@return string
+    Using mb_strlen, this function truncates the
+    post title to the nearest space, based on number
+    of characters. This allows you to truncate your
+    title without cutting off words.
+    
+    @param int      $limit number of characters
+    
+    @return string  the truncated title
 
 */
 
@@ -78,15 +74,14 @@ function vizTruncateTitle($limit) {
 
 /*
 
-	Unlike truncating the title, this
-	function will begin truncating in the
-	middle words, which means the exact
-	character count that is passed, is
-	when you'll begin truncating.
-	
-	Usage: echo vizTruncateExcerpt(5)
-	
-	@return string
+    Using a simple substr, this function provides
+    an easy way to truncate excerpt text. It should
+    also be noted that strip_tags is run on the
+    truncated text.
+    
+    @param int      $limit number of character
+    
+    @return string  truncated excerpt text
 
 */
 
@@ -119,20 +114,14 @@ function vizTruncateExcerpt($limit) {
 
 /*
 
-	This function returns a given amount
-	of related posts based on tags that
-	are assigned to the post you are
-	currently viewing.
-
-	This function is meant to be used on
-	the Single post page, and shouldn't
-	be used otherwise without alteration. 
-	It accepts one parameter, which is 
-	the number of related posts you'd 
-	like to display. To call 3 posts, 
-	just use it like this:
-	
-	vizRelatedPosts(3);
+    Based off of Wordpress' built in tagging system, this 
+    function allows you to easily pull down related posts. This 
+    function is intended to be used on a single post page, and 
+    hasn't been tested otherwise.
+    
+    @param int      $number amount of posts to pull down
+    
+    @echo string    unordered list of posts
 
 */
 
@@ -193,13 +182,12 @@ function vizRelatedPosts($number) {
 
 /*
 
-	This function returns minimal info
-	about the author for any given post.
-	This is typically used on the single
-	post page, and will return the authors
-	name, gravatar and bio.
-	
-	Usage: vizSimpleAuthor();
+    This function echo's out a clean and simple
+    post author 'box'. When used, it spits out an
+    author image, name and desc, based on the
+    built in user meta.
+    
+    @echo string    html author box
 
 */
 
@@ -233,22 +221,16 @@ function vizSimpleAuthor() {
 
 /*
 
-	Counting page views is a default function
-	provided by the Visualyze Core. Do not remove
-	the vizCountViews() function from your files.
-
-	This function queries the database by a meta
-	key called "post_view_count", which is attached
-	to each post in the database. We then tell the
-	database that we want to order the results by 
-	the value of "post_view_count", which gives us
-	the most viewed posts of all time.
-	
-	Simply pass the number of posts you want to
-	display, to the function and you're done. This
-	function is best used in the sidebar or footer.
-	
-	Usage: vizPopularPosts(10);
+    This function allows you to query for the most
+    popular posts on your site. Using a custom post counter
+    built into Visualyze, this pulls down 'N' number of
+    posts, and orders them by the 'post_view_count'
+    table in the database. This gives posts that
+    have the highest view count.
+    
+    @param int     $number amount of posts to pull
+    
+    @echo string    unordered list of popular posts
 
 */
 
@@ -297,14 +279,12 @@ function vizPopularPosts($number) {
 
 /*
 
-	In an attempt to clean up, and abstract
-	as much logic as possible from the page
-	templates on the front end, this code is
-	the default you see in most themes to 
-	display the proper title on the archive
-	pages. Nothing special.
-	
-	Usage: vizArchiveTitles();
+    This function is an attempt to do a bit of 
+    cleanup for the built in "archive titles" within
+    Wordpress. The function takes care of page 
+    titles for Categories, Tags, etc.
+    
+    @echo string    html archive title
 
 */
 
@@ -346,14 +326,11 @@ function vizArchiveTitles() {
 
 /*
 
-	I find it better to wrap this 'no content
-	found' fallback into its own so you're able
-	to change it one place, and it'll change
-	wherever it's used. I also think the end of
-	loop can be pain sometimes, this helps
-	out a little bit.
-	
-	Usage: vizContentNotFound();
+    This function takes care of the default 404
+    'no content found' content that is built into
+    Wordpress. Another attempt for cleanup.
+    
+    @echo string    html no content found
 
 */
 
@@ -379,13 +356,14 @@ function vizContentNotFound() {
 
 /*
 
-	By using this function you can get rid
-	of the default older/newer post navigation
-	and replace it with numbered page nav. This
-	function can be edited to display markup
-	of your choosing.
-	
-	Usage: vizPaginate();
+    Using this function in place of Wordpress'
+    built in page navigations (older/newer), you
+    can output true numbered page navigation.
+    
+    @param string   $before html markup before nav
+    @param string   $after html markup after nav
+    
+    @echo string    html numbered page navigation
 
 */
 
@@ -478,12 +456,12 @@ function vizPaginate($before = '', $after = '') {
 
 /*
 
-	This function can be used by itself to 
-	display the default wordpress older/new post 
-	markup. The markup is custom and fits into
-	visualyze framework styles
-	
-	Usage: vizPaginateFallback();
+    This function simply gives you default page
+    navigation to fallback on. This is very similar
+    if not the same markup that is provided by the
+    built Wordpress page navigation.
+    
+    @echo string    html default page navigation
 
 */
 
@@ -512,15 +490,15 @@ function vizPaginateFallback() {
 
 /*
 
-	The devlyQueries function returns a nice 
-	string to the page that lets you know how 
-	many queries were ran on page load. To
-	get the best results, run this function
-	in footer.php
+	This function is to help during the dev
+	stage of your build. It simply uses Wordpress'
+	query counter to display a nice little message
+	of how many queries are running on the given
+	page. It is recommended that this is run
+	in the footer of your site, for the 
+	most accurate results.
 	
-	Usage: vizShowQueries();
-	
-	- Returns: devly ran 14 queries in 0.025 seconds
+	@echo string    html number of queries alert
 
 */
 

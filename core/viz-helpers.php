@@ -439,7 +439,11 @@ function vizPaginate($before = '', $after = '') {
 	}
 
 	// SETUP PREVIOUS PAGE LINK
-	echo '<li class="prevPage">' . previous_posts_link('<<') . '</li>';
+	echo '<li class="next-page">'; 
+	    
+	    previous_posts_link('&laquo;');
+	
+	echo '</li>';
 
 	// SETUP NUMBERED LINKS
 	for($i = $startPage; $i <= $endPage; $i++) {
@@ -449,7 +453,11 @@ function vizPaginate($before = '', $after = '') {
 	}
 
 	// SETUP NEXT PAGE LINK
-	echo '<li class="nextPage">' . next_posts_link('>>') . '</li>';
+	echo '<li class="next-page">'; 
+	    
+	    next_posts_link('&raquo;');
+	
+	echo '</li>';
 
 	// SETUP GO TO LAST PAGE LINK
 	if ($endPage < $maxPages) {
